@@ -57,6 +57,8 @@ Configuration variables:
 - **sync_mode** (**Optional**, boolean, default **false**): Synchronous communication mode prevents other components
   from disabling interrupts while we are talking to the boiler. Enable if you experience a lot of random intermittent
   invalid response errors (very likely to happen while using Dallas temperature sensors).
+- **opentherm_version** (**Optional**, float): OpenTherm version that is required for some boilers to work (message
+  id 124). You don't need to specify this if everything works.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.  Required if you have
   multiple busses.
 
