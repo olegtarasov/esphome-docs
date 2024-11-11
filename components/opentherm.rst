@@ -422,16 +422,16 @@ Basic PID thermostat
           kp: 0.4
           ki: 0.004
 
-References
-----------
+See Also
+--------
 
-This component was forked from Arthur Rump's ``esphome-opentherm`` component, which now seems to be abandoned. I
-replaced the underlying OpenTherm library with code form Jiří Praus. I also did a lot of refactoring to bring the code
-closer to ESPHome coding standard.
-
-- `Original Arthur Rump's repository <https://github.com/arthurrump/esphome-opentherm>`__
-- `arduino-opentherm project by Jiří Praus <https://github.com/jpraus/arduino-opentherm>`__
-
-There is also my blog post with more background details and reasoning for automating an OpenTherm boiler with ESPHome:
-
-- `OpenTherm thermostat with ESPHome and Home Assistant <https://olegtarasov.me/opentherm-thermostat-esphome/>`__
+- :apiref:`opentherm/hub.h`
+- :apiref:`opentherm/input.h`
+- :apiref:`opentherm/number/number.h`
+- :apiref:`opentherm/output/output.h`
+- :apiref:`opentherm/switch/switch.h`
+- `OpenTherm thermostat with ESPHome and Home Assistant <https://olegtarasov.me/opentherm-thermostat-esphome/>`__ —
+  real-world use case for this component.
+- `Development repository <https://github.com/olegtarasov/esphome-opentherm>`__ — new features will be tested here
+  before proposing them to ESPHome core.
+- :ghedit:`Edit`
