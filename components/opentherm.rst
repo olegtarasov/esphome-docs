@@ -425,11 +425,11 @@ Basic PID thermostat
 See Also
 --------
 
-- :apiref:`OpenthermHub <opentherm/hub.h>`
-- :apiref:`OpenthermInput <opentherm/input.h>`
-- :apiref:`OpenthermNumber <opentherm/number/number.h>`
-- :apiref:`OpenthermOutput <opentherm/output/output.h>`
-- :apiref:`OpenthermSwitch <opentherm/switch/switch.h>`
+- :apiref:`API Reference: OpenthermHub <opentherm/hub.h>`
+- :apiref:`API Reference: OpenthermInput <opentherm/input.h>`
+- :apiref:`API Reference: OpenthermNumber <opentherm/number/number.h>`
+- :apiref:`API Reference: OpenthermOutput <opentherm/output/output.h>`
+- :apiref:`API Reference: OpenthermSwitch <opentherm/switch/switch.h>`
 - `OpenTherm thermostat with ESPHome and Home Assistant <https://olegtarasov.me/opentherm-thermostat-esphome/>`__ —
   real-world use case for this component.
 - `Development repository <https://github.com/olegtarasov/esphome-opentherm>`__ — new features will be tested here
