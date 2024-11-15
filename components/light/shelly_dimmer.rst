@@ -93,6 +93,66 @@ Configuration variables:
 
 - All other options from :ref:`Light <config-light>`.
 
+Automatic calibration
+---------------------
+
+Many dimmable light bulbs have non-linear characteristic. This means that changing brightness from 100% to 80% can
+have no visible change, but a change from 50% to 40% can decrease visible output by a third. You can partially overcome
+this by hand-picking ``min_brightness`` and ``max_brightness`` values, but this only helps in aligning 0% and 100%
+levels to the actual output. The curve between these values is still likely to be non-linear. Original Shelly firmware
+supports automatic calibration that helps make this curve more linear resulting in smoother control across the whole
+spectrum.
+
+An attempt was made to replicate this process in Shelly Dimmer component for ESPHome. In order to be able to calibrate
+your dimmer, you need to take several steps:
+
+1. Optionally remove ``min_brightness`` and ``max_brightness`` from your Shelly ``light`` section. Calibration process
+   will respect these values if they are set, but they are not needed unless you intentionally wish to limit your
+   brightness levels.
+2. Add ``update_interval: 1s`` to your Shelly ``light`` section. This is not strictly required, but will greatly
+   increase the speed of calibration process. ``update_interval`` can be removed after calibration. This
+   change will result in power, voltage and current sensors being reported to HA every second instead of every 10
+   seconds.
+3. Add a template button that starts calibration process. You might notice the hardcoded dimmer id — that's because
+   ``id`` property that you specify in config is used for ``LightState``, not the parent dimmer component.
+
+.. code-block:: yaml
+
+    button:
+    - platform: template
+        id: calibrate_button
+        name: "Calibrate"
+        entity_category: config
+        on_press:
+        then:
+            - lambda: |-
+                shelly_dimmer_shellydimmer_id->start_calibration();
+
+4. You can also create another button to clear calibration data and revert your dimmer to its original behavior:
+
+.. code-block:: yaml
+
+    button:
+    - platform: template
+        id: clear_calibration_button
+        name: "Clear calibration"
+        entity_category: config
+        on_press:
+        then:
+            - lambda: |-
+                shelly_dimmer_shellydimmer_id->clear_calibration();
+
+5. Set logger level to ``DEBUG`` if you want to observe the calibration process in detail.
+
+Upload firmware as usual and press the "Calibrate" button that appears in Home Assistant. The following will happen:
+
+1. Light will be turned on and set to full brightness.
+2. Nothing will happen for a warmup period of 20 steps. If you set ``update_interval: 1s``, one step takes one second.
+3. Every 3 steps brightness will decrease by 5%. Power drawn by the light bulb will be measured on each step, producing
+   a single measurement averaged over 3 steps. Calibration process takes 60 steps in total.
+4. Calibration results will be saved to device memory and brightness level will be brought back to 100%.
+5. Calibration is complete! You can change brightness value and observe whether it became more linear.
+
 
 See Also
 --------
