@@ -115,34 +115,34 @@ your dimmer, you need to take several steps:
 .. code-block:: yaml
 
     light:
-        - platform: shelly_dimmer
-            id: dimmer
-            output_id: shelly
+      - platform: shelly_dimmer
+        id: dimmer
+        output_id: shelly
 
 
     button:
-        - platform: template
-            id: calibrate_button
-            name: "Calibrate"
-            entity_category: config
-            on_press:
-            then:
-                - lambda: |-
-                    id(shelly)->start_calibration();
+      - platform: template
+          id: calibrate_button
+          name: "Calibrate"
+          entity_category: config
+          on_press:
+          then:
+          - lambda: |-
+              id(shelly)->start_calibration();
 
 4. You can also create another button to clear calibration data and revert your dimmer to its original behavior:
 
 .. code-block:: yaml
 
     button:
-        - platform: template
-            id: clear_calibration_button
-            name: "Clear calibration"
-            entity_category: config
-            on_press:
-            then:
-                - lambda: |-
-                    id(shelly)->clear_calibration();
+      - platform: template
+        id: clear_calibration_button
+        name: "Clear calibration"
+        entity_category: config
+        on_press:
+          then:
+            - lambda: |-
+                id(shelly)->clear_calibration();
 
 5. Set logger level to ``DEBUG`` if you want to observe the calibration process in detail.
 
