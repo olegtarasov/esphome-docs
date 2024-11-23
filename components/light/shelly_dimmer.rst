@@ -122,13 +122,13 @@ your dimmer, you need to take several steps:
 
     button:
       - platform: template
-          id: calibrate_button
-          name: "Calibrate"
-          entity_category: config
-          on_press:
+        id: calibrate_button
+        name: "Calibrate"
+        entity_category: config
+        on_press:
           then:
-          - lambda: |-
-              id(shelly)->start_calibration();
+            - lambda: |-
+                id(shelly)->start_calibration();
 
 4. You can also create another button to clear calibration data and revert your dimmer to its original behavior:
 
